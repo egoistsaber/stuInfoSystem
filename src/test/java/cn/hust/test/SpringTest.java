@@ -16,6 +16,6 @@ public class SpringTest {
 
     @Test
     public void testFindById(){
-        courseDao.findById();
+        courseDao.findById(1);
     }
 }
