@@ -1,8 +1,11 @@
 package cn.hust.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.List;
 
+@JsonIgnoreProperties(value = "handler")
 public class Course implements Serializable {
     private Integer id;
     private String name;
@@ -57,6 +60,7 @@ public class Course implements Serializable {
                 ", name='" + name + '\'' +
                 ", teacherName='" + teacherName + '\'' +
                 ", duration=" + duration +
+                ", students=" + students +
                 '}';
     }
 }

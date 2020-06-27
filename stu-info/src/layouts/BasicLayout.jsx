@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import {NavLink, Switch, Route} from 'react-router-dom';
-import User from "../components/user";
-import Course from "../components/course";
+import StudentList from "../components/StudentList";
+import CourseList from "../components/CourseList";
 import Home from "../components/home";
 import {Menu} from "antd";
 import {MailOutlined} from '@ant-design/icons';
 
 const {SubMenu} = Menu;
 
+/**
+ * 使用bootstrap的样式编写的页面
+ */
 class BasicLayout extends Component {
+
+
     render() {
         return (
             <div>
@@ -62,8 +67,8 @@ class BasicLayout extends Component {
                     <div className="col-xs-5 col-xs-offset-1">
                         <Switch>
                             <Route path='/home' component={Home}/>
-                            <Route path='/user' component={User}/>
-                            <Route path='/course' component={Course}/>
+                            <Route path='/user' component={StudentList}/>
+                            <Route path='/course' component={CourseList}/>
                         </Switch>
                     </div>
                 </div>

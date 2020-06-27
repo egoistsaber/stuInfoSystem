@@ -6,14 +6,23 @@ import cn.hust.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseServiceImpl implements ICourseService {
 
     @Autowired
     private ICourseDao courseDao;
 
-    public Course findById(int id){
+    public Course findCourseById(int id){
         System.out.println("service层:findById方法");
-        return courseDao.findById(id);
+        return courseDao.findCourseById(id);
     }
+
+    @Override
+    public List<Course> findAllCourses() {
+        return courseDao.findAllCourses();
+    }
+
+
 }

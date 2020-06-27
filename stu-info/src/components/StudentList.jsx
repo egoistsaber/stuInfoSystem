@@ -1,6 +1,18 @@
 import React, {Component} from 'react';
+import {AxiosInstance as axios} from "axios";
 
-class User extends Component {
+class StudentList extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            studentList:[]
+        }
+    }
+
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <div>
@@ -27,4 +39,4 @@ class User extends Component {
     }
 }
 
-export default User;
+export default StudentList;
