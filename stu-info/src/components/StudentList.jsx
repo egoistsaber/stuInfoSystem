@@ -4,17 +4,20 @@ import axios from 'axios';
 class StudentList extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            studentList:[]
+        this.state = {
+            studentList: []
         }
     }
 
     componentDidMount() {
         axios.get('http://localhost:8080/students')
-            .then((response)=>console.log(response.data));
+            .then((response) => this.setState({studentList: response.data}));
     }
 
     render() {
+        const {studentList} = this.state;
+        console.log(studentList);
+
         return (
             <div>
                 <table className="table">
@@ -28,13 +31,17 @@ class StudentList extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>涂畅</td>
-                        <td>男</td>
-                        <td>长沙县白沙乡</td>
-                        <td>1905</td>
-                    </tr>
+                    {
+                        studentList.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.gender}</td>
+                                <td>{item.address}</td>
+                                <td>{item.classNumber}</td>
+                            </tr>
+                        ))
+                    }
                     </tbody>
                 </table>
             </div>
