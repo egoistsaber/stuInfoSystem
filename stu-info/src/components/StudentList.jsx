@@ -16,7 +16,6 @@ class StudentList extends Component {
 
     render() {
         const {studentList} = this.state;
-        console.log(studentList);
 
         return (
             <div>
