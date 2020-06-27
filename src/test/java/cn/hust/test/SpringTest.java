@@ -23,37 +23,46 @@ public class SpringTest {
     private IStudentDao studentDao;
 
     @Test
-    public void testFindById(){
+    public void testFindById() {
         List<Student> students1 = courseDao.findCourseById(2).getStudents();
         System.out.println(students1);
         List<Student> students = studentDao.findStudentsByCourseId(2);
-        for (Student stu:students
-             ) {
+        for (Student stu : students
+        ) {
             System.out.println(stu);
         }
     }
 
     @Test
-    public void testFindAllCourses(){
+    public void testFindAllCourses() {
         List<Course> allCourses = courseDao.findAllCourses();
-        for (Course course:allCourses
-             ) {
+        for (Course course : allCourses
+        ) {
             System.out.println(course);
         }
     }
 
     @Test
-    public void testFindCoursesByStudentId(){
+    public void testFindCoursesByStudentId() {
         List<Course> courses = courseDao.findCoursesByStudentId(1);
-        for (Course course:courses
-             ) {
+        for (Course course : courses
+        ) {
             System.out.println(course);
         }
     }
 
     @Test
-    public  void testFindStudentById(){
+    public void testFindStudentById() {
         Student stu = studentDao.findStudentById(1);
         System.out.println(stu);
+    }
+
+    @Test
+    public void testFindAllStudents() {
+        List<Student> allStudents = studentDao.findAllStudents();
+        for (Student stu:allStudents
+             ) {
+            System.out.println(stu);
+        }
     }
 }

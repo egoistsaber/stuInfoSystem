@@ -19,4 +19,8 @@
 
     <!-- 开启SpringMVC框架注解的支持 -->
     <mvc:annotation-driven />
+
+    <mvc:cors>
+        <mvc:mapping path="/**"/>
+    </mvc:cors>
 </beans>

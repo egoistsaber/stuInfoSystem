@@ -21,6 +21,10 @@ public interface IStudentDao {
 
     @Select("select * from student where id = #{id}")
     @Results({
+            @Result(column = "id",property = "id",id=true),
+            @Result(column = "name",property = "name"),
+            @Result(column = "gender",property = "gender"),
+            @Result(column = "address",property = "address"),
             @Result(column = "class_number",property = "classNumber"),
             @Result(column = "id",property = "courses",
                     many = @Many(select = "cn.hust.dao.ICourseDao.findCoursesByStudentId",fetchType = FetchType.LAZY))
@@ -29,6 +33,10 @@ public interface IStudentDao {
 
     @Select("select * from student")
     @Results({
+            @Result(column = "id",property = "id",id=true),
+            @Result(column = "name",property = "name"),
+            @Result(column = "gender",property = "gender"),
+            @Result(column = "address",property = "address"),
             @Result(column = "class_number",property = "classNumber"),
             @Result(column = "id",property = "courses",
                     many = @Many(select = "cn.hust.dao.ICourseDao.findCoursesByStudentId",fetchType = FetchType.LAZY))

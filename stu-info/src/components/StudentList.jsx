@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AxiosInstance as axios} from "axios";
+import axios from 'axios';
 
 class StudentList extends Component {
     constructor(props) {
@@ -10,7 +10,8 @@ class StudentList extends Component {
     }
 
     componentDidMount() {
-
+        axios.get('http://localhost:8080/students')
+            .then((response)=>console.log(response.data));
     }
 
     render() {
@@ -18,11 +19,13 @@ class StudentList extends Component {
             <div>
                 <table className="table">
                     <thead>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>address</th>
-                    <th>classNumber</th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>address</th>
+                        <th>classNumber</th>
+                    </tr>
                     </thead>
                     <tbody>
                     <tr>
