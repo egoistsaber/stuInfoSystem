@@ -23,6 +23,7 @@ class TableList extends Component {
                             {
                                 thead.map((item,index)=><th key={index}>{item}</th>)
                             }
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>

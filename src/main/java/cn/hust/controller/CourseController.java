@@ -31,4 +31,9 @@ public class CourseController {
         System.out.println(course);
         courseService.saveCourse(course);
     }
+
+    @PostMapping("/{id}")
+    public void deleteCourse(@PathVariable("id") int id){
+        courseService.deleteCourse(id);
+    }
 }

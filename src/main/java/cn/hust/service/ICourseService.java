@@ -11,4 +11,6 @@ public interface ICourseService {
     public List<Course> findAllCourses();
 
     public void saveCourse(Course course);
+
+    public void deleteCourse(int id);
 }

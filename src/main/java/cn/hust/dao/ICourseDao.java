@@ -43,4 +43,7 @@ public interface ICourseDao {
     @Insert("insert into course(name,teacher_name,duration) values(#{name},#{teacherName},#{duration})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     public void saveCourse(Course course);
+
+    @Delete("delete from course where id = #{id}")
+    public void deleteCourse(int id);
 }

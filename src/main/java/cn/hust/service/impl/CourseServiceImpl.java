@@ -28,4 +28,9 @@ public class CourseServiceImpl implements ICourseService {
     public void saveCourse(Course course) {
         courseDao.saveCourse(course);
     }
+
+    @Override
+    public void deleteCourse(int id) {
+        courseDao.deleteCourse(id);
+    }
 }
