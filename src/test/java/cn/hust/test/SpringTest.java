@@ -86,4 +86,11 @@ public class SpringTest {
         studentDao.saveStudent(student);
         System.out.println(student.getId());
     }
+
+    @Test
+    public void testUpdateStudent(){
+        Student student=studentDao.findStudentById(13);
+        student.setName("tutu");
+        studentDao.updateStudent(student);
+    }
 }

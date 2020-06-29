@@ -33,4 +33,10 @@ public class StudentController {
     public void deleteStudent(@PathVariable("id") int id) {
         studentService.deleteStudent(id);
     }
+
+    @PostMapping("/update")
+    public void updateStudent(@RequestBody Student student){
+        System.out.println(student);
+        studentService.updateStudent(student);
+    }
 }

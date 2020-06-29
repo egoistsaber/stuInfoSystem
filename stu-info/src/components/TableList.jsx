@@ -3,9 +3,19 @@ import {NavLink} from "react-router-dom";
 import {Button} from "antd";
 import TableLine from "./TableLine";
 
+
 class TableList extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            visible:false
+        };
+    }
+
+
+
     render() {
-        const {list,link,thead,propsConfig,onDelete}=this.props;
+        const {list, link, thead, propsConfig, onDelete,handleOk} = this.props;
 
         return (
             <div>
@@ -21,7 +31,7 @@ class TableList extends Component {
                         <thead>
                         <tr>
                             {
-                                thead.map((item,index)=><th key={index}>{item}</th>)
+                                thead.map((item, index) => <th key={index}>{item}</th>)
                             }
                             <th>操作</th>
                         </tr>
@@ -31,7 +41,7 @@ class TableList extends Component {
                             list.map((item, index) => (
                                 <tr key={index}>
                                     <TableLine propsConfig={propsConfig}
-                                               itemId={item.id} index={index} item={item} onDelete={onDelete}/>
+                                               itemId={item.id} index={index} item={item} onDelete={onDelete} handleOk={handleOk}/>
                                 </tr>
                             ))
                         }
