@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import {NavLink} from "react-router-dom";
+import { Button } from 'antd';
+import TableList from "./TableList";
 
 class CourseList extends Component {
     constructor(props) {
@@ -17,30 +20,11 @@ class CourseList extends Component {
     render() {
         const {courseList}=this.state;
 
+        const config={list:courseList,link:'/courses/newCourse',thead:['Id','名字','教师名字','课时'],
+            propsConfig:['id','name','teacherName','duration']};
         return (
             <div>
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>名字</th>
-                        <th>教师名字</th>
-                        <th>课时</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        courseList.map((item, index) => (
-                            <tr key={index}>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                <td>{item.teacherName}</td>
-                                <td>{item.duration}</td>
-                            </tr>
-                        ))
-                    }
-                    </tbody>
-                </table>
+                <TableList {...config}/>
             </div>
         );
     }

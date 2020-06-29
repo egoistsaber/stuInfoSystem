@@ -14,6 +14,9 @@ CREATE TABLE `student`(
 	`class_number` CHAR(50) NULL,
 	PRIMARY KEY(`id`) 
 )ENGINE=INNODB;
+INSERT INTO `student` VALUES(1,'tutu','m','绿柳山庄','1905');
+INSERT INTO `student`(`name`,`gender`,`address`,`class_number`) VALUES ('chacha','f','杏子林','1902');
+
 
 #创建课程表
 DROP TABLE IF EXISTS `course`;
@@ -24,6 +27,8 @@ CREATE TABLE `course`(
 	`duration` INT NULL,
 	PRIMARY KEY(`Id`)
 )ENGINE=INNODB;
+INSERT INTO `course`(`name`,`teacher_name`,`duration`) VALUES('体育','萧峰',20);
+INSERT INTO `course`(`name`,`teacher_name`,`duration`) VALUES('美术','赵敏',22);
 
 #课程学生表
 DROP TABLE IF EXISTS `stu_course`;
@@ -33,16 +38,9 @@ CREATE TABLE `stu_course`(
 	`course_id` INT NOT NULL,
 	`grade` INT NULL DEFAULT 0,
 	PRIMARY KEY(`id`),
-	CONSTRAINT `fk_reference_stu` FOREIGN KEY (`stu_id`) REFERENCES `student`(`id`),
-	CONSTRAINT `fk_reference_course` FOREIGN KEY (`course_id`) REFERENCES `course`(`id`)
+	CONSTRAINT `fk_reference_stu` FOREIGN KEY (`stu_id`) REFERENCES `student`(`id`) on delete cascade on update cascade,
+	CONSTRAINT `fk_reference_course` FOREIGN KEY (`course_id`) REFERENCES `course`(`id`) on delete cascade on update cascade,
 )ENGINE=INNODB;
-
-
-INSERT INTO `student` VALUES(1,'tutu','m','绿柳山庄','1905');
-INSERT INTO `student`(`name`,`gender`,`address`,`class_number`) VALUES ('chacha','f','杏子林','1902');
-
-INSERT INTO `course`(`name`,`teacher_name`,`duration`) VALUES('体育','萧峰',20);
-INSERT INTO `course`(`name`,`teacher_name`,`duration`) VALUES('美术','赵敏',22);
 
 INSERT	INTO `stu_course`(`stu_id`,`course_id`,`grade`) VALUES(1,2,80);
 INSERT	INTO `stu_course`(`stu_id`,`course_id`,`grade`) VALUES(1,1,70);

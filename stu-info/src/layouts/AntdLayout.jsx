@@ -5,9 +5,10 @@ import {MenuFoldOutlined, MailOutlined,  MenuUnfoldOutlined} from '@ant-design/i
 import StudentList from "../components/StudentList";
 import CourseList from "../components/CourseList";
 import Home from "../components/home";
+import SaveCourse from "../components/SaveCourse";
 import './AntdLayout.css'
 import logo from '../logo192.png';
-import AddStudent from "../components/AddStudent";
+import SaveStudent from "../components/saveStudent";
 
 const {SubMenu} = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -44,7 +45,7 @@ class AntdLayout extends Component {
                         }
                     >
                         <Menu.Item><NavLink to='/students/list'>studentList</NavLink></Menu.Item>
-                        <Menu.Item><NavLink to='/students/add'>addStudent</NavLink></Menu.Item>
+                        <Menu.Item><NavLink to='/students/newStudent'>addStudent</NavLink></Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="sub2"
@@ -53,7 +54,8 @@ class AntdLayout extends Component {
                         <span>Courses</span>
                     </span>}
                     >
-                        <Menu.Item><NavLink to='/course/list'>CourseList</NavLink></Menu.Item>
+                        <Menu.Item><NavLink to='/courses/list'>CourseList</NavLink></Menu.Item>
+                        <Menu.Item><NavLink to='/courses/newCourse'>NewCourse</NavLink></Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="sub3"
@@ -83,8 +85,9 @@ class AntdLayout extends Component {
                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                            <Switch>
                                <Route path='/students/list' component={StudentList}/>
-                               <Route path='/students/add' component={AddStudent}/>
-                               <Route path='/course/list' component={CourseList}/>
+                               <Route path='/students/newStudent' component={SaveStudent}/>
+                               <Route path='/courses/list' component={CourseList}/>
+                               <Route path='/courses/newCourse' component={SaveCourse}/>
                                <Route path='/' component={Home}/>
                            </Switch>
                        </div>

@@ -2,10 +2,7 @@ package cn.hust.dao;
 
 import cn.hust.domain.Course;
 import cn.hust.domain.Student;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
@@ -42,4 +39,8 @@ public interface ICourseDao {
             @Result(column = "teacher_name",property = "teacherName")
     })
     public List<Course> findCoursesByStudentId(int id);
+
+    @Insert("insert into course(name,teacher_name,duration) values(#{name},#{teacherName},#{duration})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    public void saveCourse(Course course);
 }

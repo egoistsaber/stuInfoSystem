@@ -25,4 +25,10 @@ public class CourseController {
     public List<Course> findAllCourses(){
         return courseService.findAllCourses();
     }
+
+    @PostMapping("")
+    public void saveCourse(@RequestBody Course course){
+        System.out.println(course);
+        courseService.saveCourse(course);
+    }
 }

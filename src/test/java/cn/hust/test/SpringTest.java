@@ -65,4 +65,25 @@ public class SpringTest {
             System.out.println(stu);
         }
     }
+
+    @Test
+    public void testSaveCourse(){
+        Course course=new Course();
+        course.setName("c语言");
+        course.setDuration(19);
+        course.setTeacherName("王语嫣");
+        courseDao.saveCourse(course);
+        System.out.println(course.getId());
+    }
+
+    @Test
+    public void testSaveStudent(){
+        Student student=new Student();
+        student.setAddress("山西平遥");
+        student.setClassNumber("1903");
+        student.setGender("f");
+        student.setName("彤彤");
+        studentDao.saveStudent(student);
+        System.out.println(student.getId());
+    }
 }

@@ -24,5 +24,8 @@ public class CourseServiceImpl implements ICourseService {
         return courseDao.findAllCourses();
     }
 
-
+    @Override
+    public void saveCourse(Course course) {
+        courseDao.saveCourse(course);
+    }
 }

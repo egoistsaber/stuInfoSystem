@@ -1,10 +1,7 @@
 package cn.hust.dao;
 
 import cn.hust.domain.Student;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
@@ -42,4 +39,12 @@ public interface IStudentDao {
                     many = @Many(select = "cn.hust.dao.ICourseDao.findCoursesByStudentId",fetchType = FetchType.LAZY))
     })
     public List<Student> findAllStudents();
+
+
+    @Insert("insert into student(name,gender,address,class_number) values(#{name},#{gender},#{address},#{classNumber});")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    public void saveStudent(Student student);
+
+    @Delete("delete from student where id = #{id}")
+    public void deleteStudent(Integer id);
 }

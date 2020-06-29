@@ -9,4 +9,6 @@ public interface ICourseService {
     public Course findCourseById(int id);
 
     public List<Course> findAllCourses();
+
+    public void saveCourse(Course course);
 }
