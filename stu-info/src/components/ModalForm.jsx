@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, Form, Input, Radio} from 'antd';
-import axios from 'axios';
+import {Modal} from 'antd';
 
 class ModalForm extends Component {
     handleOk = () => {

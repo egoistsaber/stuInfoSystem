@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Button, Modal, Form, Input, Radio} from 'antd';
+import {Modal} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import TableList from "./TableList";
 import ModalForm from "./ModalForm";
