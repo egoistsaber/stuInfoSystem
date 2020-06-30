@@ -33,4 +33,9 @@ public class CourseServiceImpl implements ICourseService {
     public void deleteCourse(int id) {
         courseDao.deleteCourse(id);
     }
+
+    @Override
+    public void updateCourse(Course course) {
+        courseDao.updateCourse(course);
+    }
 }

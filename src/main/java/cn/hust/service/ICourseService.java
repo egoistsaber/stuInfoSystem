@@ -13,4 +13,6 @@ public interface ICourseService {
     public void saveCourse(Course course);
 
     public void deleteCourse(int id);
+
+    public void updateCourse(Course course);
 }

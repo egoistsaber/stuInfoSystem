@@ -46,4 +46,7 @@ public interface ICourseDao {
 
     @Delete("delete from course where id = #{id}")
     public void deleteCourse(int id);
+
+    @Update("update course set name=#{name},teacher_name=#{teacherName},duration=#{duration} where id =#{id};")
+    public void updateCourse(Course course);
 }

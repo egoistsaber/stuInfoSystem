@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Button, Modal, Form, Input, Radio} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import TableList from "./TableList";
+import ModalForm from "./ModalForm";
 
 class StudentList extends Component {
     constructor(props) {
@@ -94,7 +95,7 @@ class StudentList extends Component {
 
 
     render() {
-        const {studentList} = this.state;
+        const {studentList,visible,tempStu} = this.state;
 
         const config = {
             list: studentList,
@@ -105,61 +106,16 @@ class StudentList extends Component {
             handleOk: this.showModal
         };
 
-        const {tempStu}=this.state;
+        const modalFormConfig={
+            title:"更改学生信息",
+            config:[['id','ID'],['name','姓名'],['gender','男','女'],['address','地址'],['classNumber','班级号']]
+        };
 
         return (
             <div>
                 <TableList {...config}/>
-                <Modal
-                    title="更改学生信息"
-                    visible={this.state.visible}
-                    onOk={this.handleOk}
-                    onCancel={this.handleCancel}
-                >
-                    <div className="form-group" style={{margin:20}}>
-                        <label className="col-sm-2 control-label">ID</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" name="Id"
-                                   placeholder="ID" value={tempStu.id} disabled/>
-                        </div>
-                        <br/>
-                    </div>
-                    <div className="form-group" style={{margin:20}}>
-                        <label htmlFor="inputName" className="col-sm-2 control-label">姓名</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" id="inputName" name="name"
-                                   placeholder="姓名" value={tempStu.name} onChange={this.handleChange}/>
-                        </div>
-                        <br/>
-                    </div>
-                    <div className="radio col-xs-offset-1">
-                        <label>
-                            <input type="radio" name="gender" value="m" onChange={this.handleChange}
-                                   checked={tempStu.gender==='m'||!tempStu.gender}/>
-                                男
-                        </label>
-                        <label style={{marginLeft:10}}>
-                            <input type="radio" name="gender" value="f" onChange={this.handleChange} checked={tempStu.gender==='f'}/>
-                                女
-                        </label>
-                    </div>
-                    <div className="form-group" style={{margin:20}}>
-                        <label htmlFor="inputAddress" className="col-sm-2 control-label">地址</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" id="inputAddress"
-                                   name="address" placeholder="地址" value={tempStu.address} onChange={this.handleChange}/>
-                        </div>
-                        <br/>
-                    </div>
-                    <div className="form-group" style={{margin:20}}>
-                        <label htmlFor="inputClassNumber" className="col-sm-2 control-label">班级号</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" id="inputClassNumber"
-                                   name="classNumber" placeholder="班级号" value={tempStu.classNumber} onChange={this.handleChange}/>
-                        </div>
-                        <br/>
-                    </div>
-                </Modal>
+                <ModalForm tempStu={tempStu} visible={visible} handleOk={this.handleOk}
+                           handleCancel={this.handleCancel} handleChange={this.handleChange} modalFormConfig={modalFormConfig}/>
             </div>
         );
     }
