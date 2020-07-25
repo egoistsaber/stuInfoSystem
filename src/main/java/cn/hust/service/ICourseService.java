@@ -1,6 +1,7 @@
 package cn.hust.service;
 
 import cn.hust.domain.Course;
+import cn.hust.domain.StuCourse;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface ICourseService {
     public void deleteCourse(int id);
 
     public void updateCourse(Course course);
+
 }

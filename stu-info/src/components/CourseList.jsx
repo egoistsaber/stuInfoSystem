@@ -93,7 +93,7 @@ class CourseList extends Component {
         const {courseList,visible,tempCourse}=this.state;
 
         const config={list:courseList,link:'/courses/newCourse',thead:['Id','名字','教师名字','课时'],
-            propsConfig:['id','name','teacherName','duration'],onDelete:this.onDelete,handleOk: this.showModal};
+            propsConfig:['id','name','teacherName','duration'],onDelete:this.onDelete,handleOk: this.showModal, btnLabel:"选课的所有学生"};
 
         const modalFormConfig={
             title:"更改课程信息",

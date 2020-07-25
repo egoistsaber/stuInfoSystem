@@ -7,8 +7,8 @@ import java.io.Serializable;
 @JsonIgnoreProperties(value = "handler")
 public class StuCourse implements Serializable {
     private Integer id;
-    private Integer stuId;
-    private Integer courseId;
+    private Student student;
+    private Course course;
     private Integer grade;
 
     public Integer getId() {
@@ -19,20 +19,20 @@ public class StuCourse implements Serializable {
         this.id = id;
     }
 
-    public Integer getStuId() {
-        return stuId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStuId(Integer stuId) {
-        this.stuId = stuId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public Integer getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public Integer getGrade() {
@@ -47,8 +47,8 @@ public class StuCourse implements Serializable {
     public String toString() {
         return "StuCourse{" +
                 "id=" + id +
-                ", stuId=" + stuId +
-                ", courseId=" + courseId +
+                ", student=" + student +
+                ", course=" + course +
                 ", grade=" + grade +
                 '}';
     }

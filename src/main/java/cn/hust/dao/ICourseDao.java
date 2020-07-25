@@ -11,27 +11,27 @@ import java.util.List;
 @Repository
 public interface ICourseDao {
 
-    @Select("select * from course where id = #{id};")
-    @Results(id="courseMap",
-    value={
-            @Result(column = "id",property = "id",id = true),
-            @Result(column = "name",property = "name"),
-            @Result(column = "duration",property = "duration"),
-            @Result(column="teacher_name",property = "teacherName"),
-            @Result(column = "id",property = "students",
-                    many = @Many(select = "cn.hust.dao.IStudentDao.findStudentsByCourseId",fetchType = FetchType.LAZY))
-    })
+//    @Select("select * from course where id = #{id};")
+//    @Results(id="courseMap",
+//    value={
+//            @Result(column = "id",property = "id",id = true),
+//            @Result(column = "name",property = "name"),
+//            @Result(column = "duration",property = "duration"),
+//            @Result(column="teacher_name",property = "teacherName"),
+//            @Result(column = "id",property = "students",
+//                    many = @Many(select = "cn.hust.dao.IStudentDao.findStudentsByCourseId",fetchType = FetchType.LAZY))
+//    })
     Course findCourseById(int id);
 
-    @Select("select * from course;")
-    @Results({
-            @Result(column = "id",property = "id",id = true),
-            @Result(column = "name",property = "name"),
-            @Result(column = "duration",property = "duration"),
-            @Result(column="teacher_name",property = "teacherName"),
-            @Result(column = "id",property = "students",
-                    many = @Many(select = "cn.hust.dao.IStudentDao.findStudentsByCourseId",fetchType = FetchType.LAZY))
-    })
+//    @Select("select * from course;")
+//    @Results({
+//            @Result(column = "id",property = "id",id = true),
+//            @Result(column = "name",property = "name"),
+//            @Result(column = "duration",property = "duration"),
+//            @Result(column="teacher_name",property = "teacherName"),
+//            @Result(column = "id",property = "students",
+//                    many = @Many(select = "cn.hust.dao.IStudentDao.findStudentsByCourseId",fetchType = FetchType.LAZY))
+//    })
     List<Course> findAllCourses();
 
     @Select("SELECT c.* FROM course c,stu_course sc WHERE c.`id`=sc.`course_id` AND sc.`stu_id`=#{id};")

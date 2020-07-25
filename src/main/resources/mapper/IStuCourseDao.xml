@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hust.dao.IStuCourseDao">
+    <resultMap id="BaseResultMap" type="cn.hust.domain.StuCourse">
+        <id column="id" property="id"/>
+        <result column="grade" property="grade"/>
+        <association property="student" javaType="cn.hust.domain.Student">
+            <id property="id" column="stu_id"/>
+            <result property="name" column="stu_name"/>
+            <result property="gender" column="stu_gender"/>
+            <result property="address" column="stu_address"/>
+            <result property="classNumber" column="stu_class_number"/>
+        </association>
+        <association property="course" javaType="cn.hust.domain.Course">
+            <id property="id" column="course_id"/>
+            <result property="name" column="course_name"/>
+            <result property="teacherName" column="course_teacher_name"/>
+            <result property="duration" column="course_duration"/>
+        </association>
+    </resultMap>
+
+    <select id="findCoursesByStudentId" resultMap="BaseResultMap" parameterType="Integer">
+        select sc.id,s.`id` as stu_id,s.`name` as stu_name, s.`address` as stu_address,s.`gender` as stu_gender,
+               s.`class_number` as stu_class_number,c.id as course_id,
+               c.name as course_name,c.teacher_name as course_teacher_name,c.duration as course_duration,
+               sc.`grade`
+        from student s,stu_course sc,course c where s.id=sc.`stu_id` and sc.`course_id`=c.`id` And s.`id`=#{stuId};
+    </select>
+</mapper>

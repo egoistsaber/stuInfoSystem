@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import {Button} from "antd";
 import TableLine from "./TableLine";
+import './TableList.css';
 
 
 class TableList extends Component {
@@ -15,7 +16,7 @@ class TableList extends Component {
 
 
     render() {
-        const {list, link, thead, propsConfig, onDelete,handleOk} = this.props;
+        const {list, link, thead, propsConfig, onDelete,handleOk,btnLabel,showTable} = this.props;
 
         return (
             <div>
@@ -26,8 +27,8 @@ class TableList extends Component {
                         <NavLink to={link}><Button type="primary">新建</Button></NavLink>
                     </div>
                 </div>
-                <div>
-                    <table className="table">
+                <div style={{marginTop:10}}>
+                    <table className="table table-bordered">
                         <thead>
                         <tr>
                             {
@@ -40,8 +41,8 @@ class TableList extends Component {
                         {
                             list.map((item, index) => (
                                 <tr key={index}>
-                                    <TableLine propsConfig={propsConfig}
-                                               itemId={item.id} index={index} item={item} onDelete={onDelete} handleOk={handleOk}/>
+                                    <TableLine propsConfig={propsConfig} itemId={item.id} index={index}
+                                               item={item} onDelete={onDelete} handleOk={handleOk} btnLabel={btnLabel} showTable={showTable}/>
                                 </tr>
                             ))
                         }

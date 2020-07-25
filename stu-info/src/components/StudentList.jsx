@@ -4,21 +4,24 @@ import {Modal} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import TableList from "./TableList";
 import ModalForm from "./ModalForm";
+import ModalTable from "./ModalTable";
 
 class StudentList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             studentList: [],
-            visible: false,
-            tempStu:{
-                id:"",
-                name:"",
-                gender:"",
-                address:"",
-                classNumber:""
+            formVisible: false,
+            tableVisible: false,
+            tempStu: {
+                id: "",
+                name: "",
+                gender: "",
+                address: "",
+                classNumber: ""
             },
-            index:0
+            tempCourses: [],
+            index: 0
         };
         this.onDelete = this.onDelete.bind(this);
         this.handleOk = this.handleOk.bind(this);
@@ -26,41 +29,65 @@ class StudentList extends Component {
     };
 
     handleOk() {
-        const {tempStu,studentList,index}=this.state;
-        axios.post("http://localhost:8080/students/update",tempStu)
-            .catch(error=>alert(error));
-        studentList.splice(index,1,tempStu);
+        const {tempStu, studentList, index} = this.state;
+        axios.post("http://localhost:8080/students/update", tempStu)
+            .catch(error => alert(error));
+        studentList.splice(index, 1, tempStu);
         this.setState({
-            visible: false,
-            studentList:studentList
+            formVisible: false,
+            studentList: studentList
         });
     };
 
     handleCancel = () => {
         this.setState({
-            visible: false,
+            formVisible: false,
         });
     };
 
     showModal = (index) => {
         this.setState({
-            visible: true,
-            index:index,
-            tempStu:this.state.studentList[index]
+            formVisible: true,
+            index: index,
+            tempStu: this.state.studentList[index]
         });
     };
 
     handleChange(event) {
         const label = event.target.name;
-        const {tempStu}=this.state;
+        const {tempStu} = this.state;
         // tempStu[label]=event.target.value;
         //console.log(tempStu===this.state.studentList[this.state.index]); 返回true
         this.setState({
             // 引用的问题 或者说 浅拷贝
             // tempStu
-            tempStu:{...tempStu,[label]:event.target.value}
+            tempStu: {...tempStu, [label]: event.target.value}
         });
     }
+
+    showModalTable = (id) => {
+        let url = 'http://localhost:8080/students/' + id + '/grade';
+        if (id !== undefined)
+            axios.get(url)
+                .then(response => this.setState(
+                    {
+                        tempCourses: response.data.courses,
+                        tableVisible: true,
+                    }
+                )).catch(error=>alert("没有选课"));
+    };
+
+    handleTableCancel = () => {
+        this.setState({
+            tableVisible: false,
+        });
+    };
+
+    handleTableOk = () => {
+        this.setState({
+            tableVisible: false
+        });
+    };
 
     componentDidMount() {
         axios.get('http://localhost:8080/students')
@@ -95,7 +122,7 @@ class StudentList extends Component {
 
 
     render() {
-        const {studentList,visible,tempStu} = this.state;
+        const {studentList, formVisible, tempStu, index} = this.state;
 
         const config = {
             list: studentList,
@@ -103,19 +130,32 @@ class StudentList extends Component {
             thead: ['Id', '姓名', '性别', '地址', '班级号'],
             propsConfig: ['id', 'name', 'gender', 'address', 'classNumber'],
             onDelete: this.onDelete,
-            handleOk: this.showModal
+            handleOk: this.showModal,
+            showTable: this.showModalTable,
+            btnLabel: "选修的所有课程"
         };
 
-        const modalFormConfig={
-            title:"更改学生信息",
-            config:[['id','ID'],['name','姓名'],['gender','男','女'],['address','地址'],['classNumber','班级号']]
+        const modalFormConfig = {
+            title: "更改学生信息",
+            config: [['id', 'ID'], ['name', '姓名'], ['gender', '男', '女'], ['address', '地址'], ['classNumber', '班级号']]
+        };
+
+        const modalTableConfig = {
+            title: "选修的所有课程",
+            thead: ['课程号', '课程名', '教师姓名', '课时', '课程成绩'],
+            visible: this.state.tableVisible,
+            handleOk: this.handleTableOk,
+            handleCancel: this.handleTableCancel,
+            courses: this.state.tempCourses
         };
 
         return (
             <div>
                 <TableList {...config}/>
-                <ModalForm tempStu={tempStu} visible={visible} handleOk={this.handleOk}
-                           handleCancel={this.handleCancel} handleChange={this.handleChange} modalFormConfig={modalFormConfig}/>
+                <ModalForm tempStu={tempStu} visible={formVisible} handleOk={this.handleOk}
+                           handleCancel={this.handleCancel} handleChange={this.handleChange}
+                           modalFormConfig={modalFormConfig}/>
+                <ModalTable modalTableConfig={modalTableConfig}/>
             </div>
         );
     }

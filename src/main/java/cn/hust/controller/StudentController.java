@@ -1,6 +1,7 @@
 package cn.hust.controller;
 
 import cn.hust.domain.Student;
+import cn.hust.dto.StudentWithGradeDTO;
 import cn.hust.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,10 @@ public class StudentController {
     public void updateStudent(@RequestBody Student student){
         System.out.println(student);
         studentService.updateStudent(student);
+    }
+
+    @GetMapping("/{id}/grade")
+    public StudentWithGradeDTO findStudentWithGrade(@PathVariable("id") int id){
+        return studentService.findStudentWithGrade(id);
     }
 }

@@ -1,9 +1,14 @@
 package cn.hust.test;
 
 import cn.hust.dao.ICourseDao;
+import cn.hust.dao.IStuCourseDao;
 import cn.hust.dao.IStudentDao;
 import cn.hust.domain.Course;
+import cn.hust.domain.StuCourse;
 import cn.hust.domain.Student;
+import cn.hust.dto.StudentWithGradeDTO;
+import cn.hust.service.IStudentService;
+import jdk.nashorn.internal.ir.CallNode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +27,15 @@ public class SpringTest {
     @Autowired
     private IStudentDao studentDao;
 
+    @Autowired
+    private IStuCourseDao stuCourseDao;
+
+    @Autowired
+    private IStudentService studentService;
+
     @Test
     public void testFindById() {
-        List<Student> students1 = courseDao.findCourseById(2).getStudents();
-        System.out.println(students1);
-        List<Student> students = studentDao.findStudentsByCourseId(2);
-        for (Student stu : students
-        ) {
-            System.out.println(stu);
-        }
+        System.out.println(courseDao.findCourseById(2));
     }
 
     @Test
@@ -92,5 +97,17 @@ public class SpringTest {
         Student student=studentDao.findStudentById(13);
         student.setName("tutu");
         studentDao.updateStudent(student);
+    }
+
+    @Test
+    public void testFindStuCourse(){
+        StuCourse studentCourse = studentDao.findStudentCourse(13, 2);
+        System.out.println(studentCourse);
+    }
+
+    @Test
+    public void testFindCoursesByStu(){
+        StudentWithGradeDTO studentWithGrade = studentService.findStudentWithGrade(13);
+        System.out.println(studentWithGrade);
     }
 }

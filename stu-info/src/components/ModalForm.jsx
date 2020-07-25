@@ -28,10 +28,10 @@ class ModalForm extends Component {
                     onCancel={this.handleCancel}
                 >
                     {
-                        tempStu && config && config.map((item) => {
+                        tempStu && config && config.map((item,index) => {
                             let context;
                             if (item[0] === 'id') {
-                                context =   <div className="form-group" style={{margin: 20}}>
+                                context =   <div className="form-group" style={{margin: 20}} key={index}>
                                     <label className="col-sm-2 control-label">{item[1]}</label>
                                     <div className="col-sm-10">
                                         <input type="text" className="form-control" name={item[0]}
@@ -40,7 +40,7 @@ class ModalForm extends Component {
                                     <br/>
                                 </div>
                             } else if (item[0] === 'gender') {
-                                context = <div className="radio col-xs-offset-1">
+                                context = <div className="radio col-xs-offset-1" key={index}>
                                     <label>
                                         <input type="radio" name="gender" value="m" onChange={this.handleChange}
                                                checked={tempStu.gender === 'm' || !tempStu.gender}/>
@@ -53,7 +53,7 @@ class ModalForm extends Component {
                                     </label>
                                 </div>
                             } else {
-                                context=  <div className="form-group" style={{margin: 20}}>
+                                context=  <div className="form-group" style={{margin: 20}} key={index}>
                                     <label className="col-sm-2 control-label">{item[1]}</label>
                                     <div className="col-sm-10">
                                         <input type="text" className="form-control" name={item[0]}
