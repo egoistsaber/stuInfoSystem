@@ -5,7 +5,7 @@ import cn.hust.dao.IStudentDao;
 import cn.hust.domain.StuCourse;
 import cn.hust.domain.Student;
 import cn.hust.dto.CourseGradeDTO;
-import cn.hust.dto.StudentWithGradeDTO;
+import cn.hust.dto.StudentGradeDTO;
 import cn.hust.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,12 +48,10 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public StudentWithGradeDTO findStudentWithGrade(int id) {
+    public List<CourseGradeDTO> findStudentWithGrade(int id) {
         List<StuCourse> stuCourses = stuCourseDao.findCoursesByStudentId(id);
         if(stuCourses==null)
             return null;
-        StudentWithGradeDTO stu=new StudentWithGradeDTO();
-        stu.setStudent(stuCourses.get(0).getStudent());
         List<CourseGradeDTO> list=new ArrayList<>();
         for(StuCourse ele:stuCourses) {
             CourseGradeDTO temp=new CourseGradeDTO();
@@ -61,7 +59,6 @@ public class StudentServiceImpl implements IStudentService {
             temp.setGrade(ele.getGrade());
             list.add(temp);
         }
-        stu.setCourses(list);
-        return stu;
+        return list;
     }
 }

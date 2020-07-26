@@ -1,7 +1,7 @@
 package cn.hust.controller;
 
 import cn.hust.domain.Student;
-import cn.hust.dto.StudentWithGradeDTO;
+import cn.hust.dto.CourseGradeDTO;
 import cn.hust.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/grade")
-    public StudentWithGradeDTO findStudentWithGrade(@PathVariable("id") int id){
+    public List<CourseGradeDTO> findStudentWithGrade(@PathVariable("id") int id){
         return studentService.findStudentWithGrade(id);
     }
 }

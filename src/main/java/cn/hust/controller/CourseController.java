@@ -1,6 +1,8 @@
 package cn.hust.controller;
 
 import cn.hust.domain.Course;
+import cn.hust.dto.CourseGradeDTO;
+import cn.hust.dto.StudentGradeDTO;
 import cn.hust.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,5 +43,10 @@ public class CourseController {
     public void updateCourse(@RequestBody Course course){
         System.out.println(course);
         courseService.updateCourse(course);
+    }
+
+    @GetMapping("/{id}/grade")
+    public List<StudentGradeDTO> findStudentsByCourseId(@PathVariable("id") int id){
+        return courseService.findStudentsByCourseId(id);
     }
 }

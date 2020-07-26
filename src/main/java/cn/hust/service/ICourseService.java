@@ -1,7 +1,7 @@
 package cn.hust.service;
 
 import cn.hust.domain.Course;
-import cn.hust.domain.StuCourse;
+import cn.hust.dto.StudentGradeDTO;
 
 import java.util.List;
 
@@ -17,4 +17,5 @@ public interface ICourseService {
 
     public void updateCourse(Course course);
 
+    public List<StudentGradeDTO> findStudentsByCourseId(int id);
 }

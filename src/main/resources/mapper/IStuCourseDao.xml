@@ -25,6 +25,14 @@
                s.`class_number` as stu_class_number,c.id as course_id,
                c.name as course_name,c.teacher_name as course_teacher_name,c.duration as course_duration,
                sc.`grade`
-        from student s,stu_course sc,course c where s.id=sc.`stu_id` and sc.`course_id`=c.`id` And s.`id`=#{stuId};
+        from student s,stu_course sc,course c where s.id=sc.`stu_id` and sc.`course_id`=c.`id` And s.`id`=#{stuId} order by c.id ASC;
+    </select>
+
+    <select id="findStudentsByCourseId" resultMap="BaseResultMap" parameterType="Integer">
+        select sc.id,s.`id` as stu_id,s.`name` as stu_name, s.`address` as stu_address,s.`gender` as stu_gender,
+               s.`class_number` as stu_class_number,c.id as course_id,
+               c.name as course_name,c.teacher_name as course_teacher_name,c.duration as course_duration,
+               sc.`grade`
+        from student s,stu_course sc,course c where s.id=sc.`stu_id` and sc.`course_id`=c.`id` And c.`id`=#{courseId} order by s.id ASC;
     </select>
 </mapper>

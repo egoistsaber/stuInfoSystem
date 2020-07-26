@@ -9,4 +9,6 @@ import java.util.List;
 public interface IStuCourseDao {
 
     public List<StuCourse> findCoursesByStudentId(Integer stuId);
+
+    public List<StuCourse> findStudentsByCourseId(Integer courseId);
 }

@@ -4,7 +4,7 @@ import {Modal} from 'antd';
 class ModalTable extends Component {
     render() {
         const {modalTableConfig} = this.props;
-        const {title, visible, handleOk, handleCancel,thead,courses} = modalTableConfig;
+        const {title, visible, handleOk, handleCancel,thead,data} = modalTableConfig;
         return (
             <div>
                 <Modal
@@ -22,15 +22,13 @@ class ModalTable extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {courses&&courses.map((item,index)=>{
-                            const {course,grade}=item;
+                        {data&&data.map((item,index)=>{
+                           item=Object.values(item);
                             return (
                                 <tr key={index}>
-                                    <td>{course.id}</td>
-                                    <td>{course.name}</td>
-                                    <td>{course.teacherName}</td>
-                                    <td>{course.duration}</td>
-                                    <td>{grade}</td>
+                                    {item&&item.map((ele,i)=>
+                                        <td key={i}>{ele}</td>
+                                    )}
                                 </tr>
                             );
                         })}

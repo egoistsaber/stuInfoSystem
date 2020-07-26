@@ -71,7 +71,7 @@ class StudentList extends Component {
             axios.get(url)
                 .then(response => this.setState(
                     {
-                        tempCourses: response.data.courses,
+                        tempCourses: response.data,
                         tableVisible: true,
                     }
                 )).catch(error=>alert("没有选课"));
@@ -140,14 +140,23 @@ class StudentList extends Component {
             config: [['id', 'ID'], ['name', '姓名'], ['gender', '男', '女'], ['address', '地址'], ['classNumber', '班级号']]
         };
 
+        let tableData=[];
+        for (let i = 0; i < this.state.tempCourses.length; i++) {
+            const {course,grade}=this.state.tempCourses[i];
+            const {id,name,teacherName,duration}=course;
+            tableData[i]={id,name,teacherName,duration,grade};
+        }
+
         const modalTableConfig = {
             title: "选修的所有课程",
             thead: ['课程号', '课程名', '教师姓名', '课时', '课程成绩'],
             visible: this.state.tableVisible,
             handleOk: this.handleTableOk,
             handleCancel: this.handleTableCancel,
-            courses: this.state.tempCourses
+            data: tableData
         };
+
+
 
         return (
             <div>

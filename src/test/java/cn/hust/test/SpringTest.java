@@ -6,9 +6,8 @@ import cn.hust.dao.IStudentDao;
 import cn.hust.domain.Course;
 import cn.hust.domain.StuCourse;
 import cn.hust.domain.Student;
-import cn.hust.dto.StudentWithGradeDTO;
+import cn.hust.service.ICourseService;
 import cn.hust.service.IStudentService;
-import jdk.nashorn.internal.ir.CallNode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,9 @@ public class SpringTest {
 
     @Autowired
     private IStudentService studentService;
+
+    @Autowired
+    private ICourseService courseService;
 
     @Test
     public void testFindById() {
@@ -107,7 +109,7 @@ public class SpringTest {
 
     @Test
     public void testFindCoursesByStu(){
-        StudentWithGradeDTO studentWithGrade = studentService.findStudentWithGrade(13);
-        System.out.println(studentWithGrade);
+        System.out.println(courseService.findStudentsByCourseId(1));
+//        System.out.println(stuCourseDao.findStudentsByCourseId(1));
     }
 }
