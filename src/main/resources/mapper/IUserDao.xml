@@ -1,0 +1,14 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hust.dao.IUserDao">
+    <select id="findByUsername" parameterType="String" resultType="cn.hust.domain.User">
+        select * from user where user.username=#{username};
+    </select>
+
+    <select id="findPermissionByUsername"  parameterType="String" resultType="cn.hust.domain.Permission">
+        SELECT DISTINCT p.* FROM permission p,role r,role_permission rp,USER u,role_user ru
+                            WHERE p.`id`=rp.`permission_id` AND r.`id`=rp.`role_id`
+                            AND u.`id`=ru.`user_id` AND r.`id`=ru.`role_id` AND u.`username`=#{username};
+    </select>
+</mapper>

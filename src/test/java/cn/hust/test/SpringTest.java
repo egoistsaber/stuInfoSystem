@@ -3,6 +3,7 @@ package cn.hust.test;
 import cn.hust.dao.ICourseDao;
 import cn.hust.dao.IStuCourseDao;
 import cn.hust.dao.IStudentDao;
+import cn.hust.dao.IUserDao;
 import cn.hust.domain.Course;
 import cn.hust.domain.StuCourse;
 import cn.hust.domain.Student;
@@ -34,6 +35,9 @@ public class SpringTest {
 
     @Autowired
     private ICourseService courseService;
+
+    @Autowired
+    private IUserDao userDao;
 
     @Test
     public void testFindById() {
@@ -111,5 +115,10 @@ public class SpringTest {
     public void testFindCoursesByStu(){
         System.out.println(courseService.findStudentsByCourseId(1));
 //        System.out.println(stuCourseDao.findStudentsByCourseId(1));
+    }
+
+    @Test
+    public void testFindByUsername(){
+        System.out.println(userDao.findByUsername("ego"));
     }
 }
